@@ -1,6 +1,5 @@
-<h1 class="title">Angular Router</h1>
-<nav>
-  <a [routerLink]="['/create']">Crisis Center</a>
-  <a [routerLink]="['/history', { foo: 'foo' }]">Dragon Crisis</a>
+<nav >
+  <a [routerLink]="['/create']" routerLinkActive="active">Создание перевода</a>
+  <a [routerLink]="['/history']" routerLinkActive="active">История</a>
 </nav>
 <router-outlet></router-outlet>
