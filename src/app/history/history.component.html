@@ -1,1 +1,24 @@
-<p>history works!</p>
+<div class="content">
+  <table border="1">
+    <tr>
+      <th>№</th>
+      <th>Карта Плательщика</th>
+      <th>Карта получателя</th>
+      <th>Сумма</th>
+      <th>Дата выполнения</th>
+      <th>Действия</th>
+    </tr>
+    <tr *ngFor="let transaction of transactions; let index = index">
+      <td>{{index + 1}}</td>
+      <td>{{transaction.cardNumber1}}</td>
+      <td>{{transaction.cardNumber2}}</td>
+      <td>{{transaction.sum}}</td>
+      <td>{{transaction.createDate | date:'dd.MM.yyyy'}}</td>
+      <td>
+        <button (click)="repiteTransaction(index)">Повторить</button>
+        <button (click)="removeItem(index)">Удалить</button>
+      </td>
+    </tr>
+
+  </table>
+</div>

@@ -7,6 +7,7 @@ import { CreateComponent } from './create/create.component';
 import { HistoryComponent } from './history/history.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CardDirective } from './create/card.directive';
+import { AppService } from './app.service';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,7 @@ import { CardDirective } from './create/card.directive';
     AppRoutingModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [AppService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

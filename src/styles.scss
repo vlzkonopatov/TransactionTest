@@ -33,3 +33,9 @@ select {
 .invalid {
   background: #ffc0cd;
 }
+
+.content {
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+}

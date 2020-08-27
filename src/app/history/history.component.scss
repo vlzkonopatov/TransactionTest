@@ -1,0 +1,9 @@
+table {
+  text-align: center;
+  //border: 1px solid;
+  border-collapse: collapse;
+}
+TD, TH {
+  padding: 3px; /* Поля вокруг содержимого таблицы */
+  border: 1px solid black; /* Параметры рамки */
+}

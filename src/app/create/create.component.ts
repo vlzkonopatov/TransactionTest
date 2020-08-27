@@ -1,7 +1,9 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {Perevod} from '../app.models';
+import {Transaction} from '../app.models';
 import {Subscription} from 'rxjs';
+import {AppService} from '../app.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-create',
@@ -17,21 +19,26 @@ export class CreateComponent implements OnInit, OnDestroy {
 
   constructor(
     private fb: FormBuilder,
+    private appService: AppService,
+    private router: Router
   ) {
-    this.createForm();
+    const state = this.router.getCurrentNavigation().extras.state;
+    const transaction = state && state.transaction;
+    this.createForm(transaction);
   }
 
   ngOnInit(): void {
   }
 
 
-  createForm(form?: Perevod) {
+  createForm(form?: Transaction) {
     this.form = this.fb.group({
       cardNumber1:  [form && form.cardNumber1 ? form.cardNumber1 : '', [Validators.required, Validators.minLength(19), Validators.maxLength(23)]],
       cardNumber2:  [form && form.cardNumber2 ? form.cardNumber2 : '', [Validators.required, Validators.minLength(19), Validators.maxLength(23)]],
       cardPerson:   [form && form.cardPerson ? form.cardPerson : '', Validators.required],
       cardMonth:    [form && form.cardMonth ? form.cardMonth : '', Validators.required],
       cardYear:     [form && form.cardYear ? form.cardYear : '', Validators.required],
+      createDate:   [form && form.createDate ? form.createDate : ''],
       sum:          [form && form.sum ? form.sum : '', Validators.required],
     });
 
@@ -40,7 +47,7 @@ export class CreateComponent implements OnInit, OnDestroy {
         const currentDate = new Date();
         const month = this.cardMonth.value;
         if (parseInt(year) === currentDate.getFullYear()) {
-          const isInvalid = !!month ? !(parseInt(month) >= currentDate.getMonth()) : false;
+          const isInvalid = !!month ? !(parseInt(month) > currentDate.getMonth()) : false;
           if (isInvalid) {
             this.cardYear.setErrors({invalid: isInvalid});
           } else {
@@ -56,7 +63,7 @@ export class CreateComponent implements OnInit, OnDestroy {
         const currentDate = new Date();
         const year = this.cardYear.value;
         if ( parseInt(year) === currentDate.getFullYear()) {
-          const isInvalid = !!month ? !(parseInt(month) >= currentDate.getMonth()) : false;
+          const isInvalid = !!month ? !(parseInt(month) > currentDate.getMonth()) : false;
           if (isInvalid) {
             this.cardMonth.setErrors({invalid: isInvalid});
           } else {
@@ -75,7 +82,11 @@ export class CreateComponent implements OnInit, OnDestroy {
 
   onSubmit = (form: FormGroup) => {
     this.submitStatus = true;
-    console.log(form.value);
+    if (form.valid) {
+      this.createDate.setValue(new Date());
+      this.appService.setTransactionSubject(form.value);
+      form.reset();
+    }
   };
 
   generateValue = (type?: string) => {
@@ -118,6 +129,10 @@ export class CreateComponent implements OnInit, OnDestroy {
 
   get sum() {
     return this.form.get('sum') as FormControl;
+  }
+
+  get createDate() {
+    return this.form.get('createDate') as FormControl;
   }
 
 }
