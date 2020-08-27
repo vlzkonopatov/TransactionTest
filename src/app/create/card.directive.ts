@@ -16,6 +16,9 @@ export class CardDirective {
 
 
   onInputChange(event) {
+    if (!event) {
+      return false;
+    }
     let newVal = event.replace(/\D/g, '');
 
     if (newVal.length === 0) {

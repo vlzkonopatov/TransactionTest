@@ -85,6 +85,7 @@ export class CreateComponent implements OnInit, OnDestroy {
     if (form.valid) {
       this.createDate.setValue(new Date());
       this.appService.setTransactionSubject(form.value);
+      this.submitStatus = false;
       form.reset();
     }
   };
