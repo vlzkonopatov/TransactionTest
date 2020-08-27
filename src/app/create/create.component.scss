@@ -1,0 +1,44 @@
+.formCreateTransaction {
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+
+  .cardVisual {
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+
+    .card {
+      display: flex;
+      flex-direction: column;
+      width: 400px;
+      height: 200px;
+      border: 1px solid lightgrey;
+      padding: 30px;
+      margin-top: 20px;
+      border-radius: 25px;
+      justify-content: end;
+      -webkit-box-shadow: -19px 21px 33px -17px rgba(0,0,0,0.75);
+      -moz-box-shadow: -19px 21px 33px -17px rgba(0,0,0,0.75);
+      box-shadow: -19px 21px 33px -17px rgba(0,0,0,0.75);
+      .cardHead {
+        width: 100%;
+        font-size: 20px;
+        border-bottom: 1px solid;
+        margin-bottom: 40px;
+      }
+      .cardBody {
+        display: flex;
+        flex-direction: column;
+        .flex-row {
+          margin-top: 20px;
+        }
+        .fioInput{
+          width: 100%;
+        }
+      }
+    }
+  }
+}

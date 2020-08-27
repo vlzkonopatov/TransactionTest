@@ -1,1 +1,58 @@
-<p>create works!</p>
+<ng-container>
+  <form class="formCreateTransaction" [formGroup]="form" (ngSubmit)="onSubmit(form)">
+    <div class="cardVisual">
+      <div class="card">
+        <div class="cardHead">
+          Карта плательщика
+        </div>
+        <div class="cardBody">
+          <input placeholder="номер карты" formControlName="cardNumber1" appCardMask maxlength="23"
+                 [ngClass]="{
+                  'invalid': !cardNumber1.valid && (submitStatus || !cardNumber1.untouched)
+                 }">
+          <div class="flex-row ">
+            <input class="fioInput" placeholder="ФИО" formControlName="cardPerson"
+                   [ngClass]="{
+                  'invalid': !cardPerson.valid && (submitStatus || cardPerson.dirty || cardPerson.touched)
+                 }">
+            <select formControlName="cardMonth"
+                    [ngClass]="{
+                  'invalid': !cardMonth.valid && (submitStatus || cardMonth.dirty || cardMonth.touched)
+                 }">
+              <option value="" disabled hidden>Месяц</option>
+              <option *ngFor="let item of generateValue(); let index = index" value="{{index + 1}}">{{index + 1}}</option>
+
+            </select>
+
+            <select formControlName="cardYear"
+                    [ngClass]="{
+                  'invalid': !cardYear.valid && (submitStatus || cardYear.dirty || cardYear.touched)
+                 }">
+              <option value="" disabled hidden>Год</option>
+              <option *ngFor="let item of generateValue('years')" value="{{item}}">{{item}}</option>
+
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="cardHead">
+          Карта получателя
+        </div>
+        <div class="cardBody">
+          <input placeholder="номер карты" formControlName="cardNumber2" appCardMask maxlength="23"
+                 [ngClass]="{
+                  'invalid': !cardNumber2.valid && (submitStatus || !cardNumber2.untouched)
+                 }">
+          <div class="flex-row ">
+            <input placeholder="100 рублей" formControlName="sum"
+                   [ngClass]="{
+                  'invalid': !sum.valid && (submitStatus || sum.dirty || sum.touched)
+                 }">
+            <button>Отправить</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</ng-container>

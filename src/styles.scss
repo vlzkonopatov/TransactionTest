@@ -2,3 +2,34 @@
 body{
   margin: 0;
 }
+
+
+input {
+  height: 40px;
+  padding: 0 10px;
+}
+select {
+  margin-left: 10px;
+  padding: 10px;
+  &:after {
+    position: absolute;
+    content: "";
+    top: 14px;
+    right: 10px;
+    width: 0;
+    height: 0;
+    border: 6px solid transparent;
+    border-color: #fff transparent transparent transparent;
+  }
+}
+
+.delimit {
+  flex: 1 1 100%;
+}
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+.invalid {
+  background: #ffc0cd;
+}
