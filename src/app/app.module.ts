@@ -8,13 +8,15 @@ import { HistoryComponent } from './history/history.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CardDirective } from './create/card.directive';
 import { AppService } from './app.service';
+import { CreditCardMaskPipe } from './history/card.pip';
 
 @NgModule({
   declarations: [
     AppComponent,
     CreateComponent,
     HistoryComponent,
-    CardDirective
+    CardDirective,
+    CreditCardMaskPipe
   ],
   imports: [
     BrowserModule,

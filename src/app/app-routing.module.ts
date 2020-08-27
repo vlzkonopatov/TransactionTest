@@ -7,6 +7,7 @@ const routes: Routes = [
   { path: '',             component: CreateComponent },
   { path: 'create',       component: CreateComponent },
   { path: 'history',      component: HistoryComponent },
+  { path: '**',           redirectTo: '/create', pathMatch: 'full' },
 ];
 
 @NgModule({

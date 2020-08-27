@@ -10,8 +10,8 @@
     </tr>
     <tr *ngFor="let transaction of transactions; let index = index">
       <td>{{index + 1}}</td>
-      <td>{{transaction.cardNumber1}}</td>
-      <td>{{transaction.cardNumber2}}</td>
+      <td>{{transaction.cardNumber1 | creditCardMask}}</td>
+      <td>{{transaction.cardNumber2 | creditCardMask}}</td>
       <td>{{transaction.sum}}</td>
       <td>{{transaction.createDate | date:'dd.MM.yyyy'}}</td>
       <td>
